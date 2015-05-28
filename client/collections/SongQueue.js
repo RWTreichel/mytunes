@@ -15,7 +15,6 @@ var SongQueue = Songs.extend({
     // from the queue. If there are any songs left in
     // the queue, play the next one.
     this.on('ended', function() {
-      console.log("SongQueue's 'ended' event has fired.");
       var song = this.at(0);
       this.remove(song);
 
@@ -28,6 +27,11 @@ var SongQueue = Songs.extend({
     // When a song is dequeued, remove it from the queue.
     this.on('dequeue', function(song) {
       this.remove(song);
+    }, this);
+
+    // When a song is enqueued, add it to the queue.
+    this.on('enqueue', function(song) {
+      this.push(song);
     }, this);
   },
 
