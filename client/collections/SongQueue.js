@@ -23,10 +23,16 @@ var SongQueue = Songs.extend({
         this.playFirst();
       }
     }, this);
+
+
+    // When a song is dequeued, remove it from the queue.
+    this.on('dequeue', function(song) {
+      this.remove(song);
+    }, this);
   },
 
 });
 
 SongQueue.prototype.playFirst = function() {
-  console.log("SongQueue.playFirst() has been called.");
+  this.at(0).play();
 };
